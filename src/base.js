@@ -1,0 +1,2 @@
+
+var base = {hello: 'world'};
