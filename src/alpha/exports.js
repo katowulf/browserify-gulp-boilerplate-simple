@@ -1,5 +1,5 @@
-var _ = require('lodash');
+//var _ = require('lodash');
+//var Firebase = require('firebase');
 
-_.extend(base, {foo: 'bar'});
-
-console.log(base);
+exports.foo = 'bar';
+//exports.Firebase = Firebase;

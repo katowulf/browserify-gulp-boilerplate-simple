@@ -10,16 +10,14 @@ var fs         = require('fs');
 var glob       = require('glob');
 //var es6ify     = require('es6ify');
 
-gulp.task('tests', function(){
+gulp.task('bundle', function(){
   var bundler = browserify({debug: true});
 
-//  bundler.add(es6ify.runtime).transform(es6ify);
-
   bundler.add('./src/base.js');
-  glob.sync("./src/*/exports.js").forEach(function(file){
-    console.log('adding', file);
-    bundler.add(file);
-  });
+//  glob.sync("./src/*/exports.js").forEach(function(file){
+//    console.log('adding', file);
+//    bundler.add(file);
+//  });
 
   bundler
     .bundle()
@@ -29,10 +27,6 @@ gulp.task('tests', function(){
     })
     .pipe(source('./bundle.js'))
     .pipe(buffer())
-//    .pipe(plugins.header(fs.readFileSync('./gulp/header.txt'), {
-//      pkg: require('./package.json')
-//    }))
-//    .pipe(plugins.footer(fs.readFileSync('./helpers/globals.js')))
     .pipe(gulp.dest('dist'));
 });
 
@@ -41,14 +35,27 @@ gulp.task('cover', function () {
     .pipe(plugins.istanbul());
 });
 
-gulp.task('test', ['cover'], function () {
-  return gulp.src('test/**/*.js')
-    .pipe(plugins.jasmine())
-    .pipe(plugins.istanbul.writeReports());
+//gulp.task('test', function () {
+//  return gulp.src('test/**/*.js')
+//    .pipe(browserify())
+//    .pipe(plugins.jasmine())
+//    .pipe(plugins.istanbul.writeReports());
+//});
+
+var karma = require('karma').server;
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, done);
 });
 
 gulp.task('lint', function () {
-  return gulp.src(['./gulpfile.js', './src/**/*.js', './test/**/*.js'])
+  return gulp.src(['./gulpfile.js', './src/**/*.js', './test/**/*.spec.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
