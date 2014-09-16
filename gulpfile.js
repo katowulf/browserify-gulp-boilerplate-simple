@@ -35,24 +35,24 @@ gulp.task('cover', function () {
     .pipe(plugins.istanbul());
 });
 
-//gulp.task('test', function () {
-//  return gulp.src('test/**/*.js')
+gulp.task('test', ['cover'], function () {
+  return gulp.src('test/**/*.spec.js')
 //    .pipe(browserify())
-//    .pipe(plugins.jasmine())
-//    .pipe(plugins.istanbul.writeReports());
-//});
+    .pipe(plugins.jasmine())
+    .pipe(plugins.istanbul.writeReports());
+});
 
 var karma = require('karma').server;
 
 /**
  * Run test once and exit
  */
-gulp.task('test', function (done) {
-  karma.start({
-    configFile: __dirname + '/test/karma.conf.js',
-    singleRun: true
-  }, done);
-});
+//gulp.task('test', function (done) {
+//  karma.start({
+//    configFile: __dirname + '/test/karma.conf.js',
+//    singleRun: true
+//  }, done);
+//});
 
 gulp.task('lint', function () {
   return gulp.src(['./gulpfile.js', './src/**/*.js', './test/**/*.spec.js'])
