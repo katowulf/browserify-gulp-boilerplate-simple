@@ -26,9 +26,10 @@ gulp.task('test', function () {
       'test/**/*.spec.js': ['browserify']
     },
     browsers: ['PhantomJS'],
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
     browserify: {
-      debug: true
+      debug: true,
+      transform: ['browserify-istanbul']
     },
     singleRun: true
   });

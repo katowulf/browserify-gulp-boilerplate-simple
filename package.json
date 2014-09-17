@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "browserify": "^5.11.2",
+    "browserify-istanbul": "~0.1.2",
     "gulp": "^3.8.8",
     "gulp-jshint": "^1.8.4",
     "gulp-load-plugins": "^0.6.0",
