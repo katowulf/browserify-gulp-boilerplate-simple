@@ -1,4 +1,4 @@
-//var Firebase = require('firebase');
+var Firebase = require('firebase');
 
 exports.foo = 'bar';
-//exports.Firebase = Firebase;
+exports.Firebase = Firebase;
