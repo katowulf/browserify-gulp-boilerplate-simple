@@ -11,20 +11,9 @@ var glob       = require('glob');
 //var es6ify     = require('es6ify');
 
 gulp.task('bundle', function(){
-  var bundler = browserify({debug: true});
-
-  bundler.add('./src/base.js');
-//  glob.sync("./src/*/exports.js").forEach(function(file){
-//    console.log('adding', file);
-//    bundler.add(file);
-//  });
-
-  bundler
+  return browserify({debug: true})
+    .add('./src/base.js')
     .bundle()
-    .on('error', function (err) {
-      console.log(err.toString());
-      this.emit("end");
-    })
     .pipe(source('./bundle.js'))
     .pipe(buffer())
     .pipe(gulp.dest('dist'));
