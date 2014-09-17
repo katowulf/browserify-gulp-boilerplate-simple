@@ -2,7 +2,7 @@
   "name": "bowserfy",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/bow.js",
+  "main": "./src/base",
   "dependencies": {
     "xtend": "4"
   },
