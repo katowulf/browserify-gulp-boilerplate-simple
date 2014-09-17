@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/bow.js",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "2"
+  },
   "devDependencies": {
     "browserify": "^5.11.2",
     "browserify-shim": "^3.7.0",

@@ -1,3 +1,3 @@
 
-var alpha = require('../alpha/exports.js');
+var alpha = require('../alpha/exports');
 exports.baz = alpha.foo + '!';
