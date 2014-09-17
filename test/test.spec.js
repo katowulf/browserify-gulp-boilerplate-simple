@@ -1,10 +1,6 @@
+var fbutil = require('../src/base');
 
-var fbutil = require('../src/base.js');
-//var fbutil = require('../dist/bundle.js');
-
-console.log(fbutil);
-
-describe('huh?', function() {
+describe('tests', function() {
   it('should have a foo value', function() {
     expect(fbutil.foo).toBe('bar');
   });
