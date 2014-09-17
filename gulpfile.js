@@ -2,13 +2,10 @@
 
 var gulp       = require('gulp');
 var plugins    = require('gulp-load-plugins')();
-var _          = require('lodash');
 var browserify = require('browserify');
 var source     = require('vinyl-source-stream');
 var buffer     = require('vinyl-buffer');
-var fs         = require('fs');
-var glob       = require('glob');
-//var es6ify     = require('es6ify');
+var karma      = require('karma-as-promised');
 
 gulp.task('bundle', function(){
   return browserify({debug: true})
@@ -19,29 +16,23 @@ gulp.task('bundle', function(){
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('cover', function () {
-  return gulp.src('./src/**/*.js')
-    .pipe(plugins.istanbul());
+gulp.task('test', function () {
+  return karma.server.start({
+    files: [
+      'test/**/*.spec.js'
+    ],
+    frameworks: ['browserify', 'jasmine'],
+    preprocessors: {
+      'test/**/*.spec.js': ['browserify']
+    },
+    browsers: ['PhantomJS'],
+    reporters: ['progress'],
+    browserify: {
+      debug: true
+    },
+    singleRun: true
+  });
 });
-
-gulp.task('test', ['cover'], function () {
-  return gulp.src('test/**/*.spec.js')
-//    .pipe(browserify())
-    .pipe(plugins.jasmine())
-    .pipe(plugins.istanbul.writeReports());
-});
-
-var karma = require('karma').server;
-
-/**
- * Run test once and exit
- */
-//gulp.task('test', function (done) {
-//  karma.start({
-//    configFile: __dirname + '/test/karma.conf.js',
-//    singleRun: true
-//  }, done);
-//});
 
 gulp.task('lint', function () {
   return gulp.src(['./gulpfile.js', './src/**/*.js', './test/**/*.spec.js'])
