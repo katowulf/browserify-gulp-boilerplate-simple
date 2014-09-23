@@ -1,5 +1,5 @@
 
-# Gulp + Browserify + Karma Boilerplate
+# Gulp + Browserify + Karma/Jasmine Boilerplate
 
 This is a boilerplate demonstrating a working setup of gulp, browserify, and karma/jasmine test units.
 It performs concat, minification, and bundling for distro.
