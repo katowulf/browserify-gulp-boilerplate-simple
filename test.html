@@ -4,16 +4,14 @@
   <meta charset="UTF-8">
   <title></title>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script type="text/javascript"
-          src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
-
+  <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
   <script type="text/javascript" src="dist/bundle.js"></script>
 
   <script>
     jQuery(function($) {
-      console.log('firebase?', Firebase);
-      console.log('fbutil?', require('firebase-util'));
-       $('body').text(Object.keys(Firebase.util));
+      var base = require('firebase-util');
+      console.log('base object', base);
+       $('body').text('Contents of require("base.js"): ' + Object.keys(base));
     });
   </script>
 </head>
